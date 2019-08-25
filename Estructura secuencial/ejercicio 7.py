@@ -1,0 +1,5 @@
+numeroDelVendedor = int(input("Ingrese el numero del vendedor: "))
+ventaRealizada = int(input("Ingrese las ventas realizadas: "))
+valorDeVentas = int(input("Ingrese el valor de las ventas: "))
+sueldo=int(800+50*ventaRealizada+0.05*valorDeVentas)
+print("El salario que le corresponde en el mes de julio es de $", sueldo)
