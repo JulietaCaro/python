@@ -3,8 +3,6 @@ contador15 = 0
 sumaDescuento20 = 0
 contador20 = 0
 monto = int(input("Ingrese el monto de la compra: "))
-while monto <= 0 and monto != -1:
-    monto = int(input("Error, ingrese el monto de la compra: "))
 while monto > 0:
     if monto > 1000 and monto <= 2000:
         descuento15 = (15*monto)//100
@@ -22,8 +20,7 @@ while monto > 0:
         print("Total a pagar: ", monto)
         
     monto = int(input("Ingrese el monto de la compra: "))
-    while monto <= 0 and monto != -1:
-        monto = int(input("Error, ingrese el monto de la compra"))
+    
 if contador15 == 0 and sumaDescuento15 == 0 and contador20 == 0 and sumaDescuento20 == 0:
     print("No se ingreso nada")
 else:

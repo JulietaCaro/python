@@ -1,46 +1,39 @@
-contadorSinDesc = 0
-acumuladorSinDesc = 0
+contadorTotalVentas = 0
 contador10 = 0
-acumulador10 = 0
-acumulador25 = 0
-contadorVentas = 0
-acumuladorCantSoli = 0
-precioBase = int(input("Ingrese el precio base: "))
-while precioBase <= 0:
+contadorSinDes = 0
+cantSoli = int(input("Ingrese la cantidad solicitada: "))
+while cantSoli <= 0 and cantSoli != -1:
+    cantSoli = int(input("Error, reingrese la cantidad solicitada: "))
+while cantSoli != -1:
     precioBase = int(input("Ingrese el precio base: "))
+    while precioBase <= 0:
+        precioBase = int(input("Error, reingrese el precio base: "))
+    if cantSoli <= 12:
+        precioFinalSinDesc = cantSoli * precioBase
+        print("Precio final: ", precioFinalSinDesc)
+        promedio = precioFinalSinDesc / cantSoli
+        print("Promedio por unidad: %.2f" %promedio)
+        contadorSinDes = contadorSinDes + 1
     
-cantSolicitada = int(input("Ingrese la cantidad solicitada: "))
-while cantSolicitada <= 0 and cantSolicitada != -1:
-    cantSolicitada = int(input("Error, ingrese la cantidad solicitada: "))
-while cantSolicitada != -1:
-    if cantSolicitada <= 12:
-        precioFinalSinDesc = precioBase * cantSolicitada
-        contadorSinDesc = contadorSinDesc + 1
-        acumuladorSinDesc = acumuladorSinDesc + precioFinalSinDesc
-    
-    if cantSolicitada >= 13 and cantSolicitada <= 100:
-        precioFinal10 = (precioBase - ((10*precioBase)//100)) * cantSolicitada
+    if cantSoli >= 13 and cantSoli <= 100:
+        precioFinal10 = precioBase * 12 + (precioBase - (10*precioBase)//100) * (cantSoli - 12)
+        print("Precio final: ", precioFinal10)
+        promedio = precioFinal10 / cantSoli
+        print("Promedio por unidad: %.2f" %promedio)
         contador10 = contador10 + 1
-        acumulador10 = acumulador10 + precioFinal10
     
-    if cantSolicitada > 100:
-        precioFinal25 = (precioBase - ((25*precioBase)//100)) * cantSolicitada
-        acumulador25 = acumulador25 + precioFinal25
-        
-    acumuladorCantSoli = acumuladorCantSoli + cantSolicitada
-    contadorVentas = contadorVentas + 1
-    cantSolicitada = int(input("Ingrese la cantidad solicitada: "))
-    while cantSolicitada <= 0 and cantSolicitada != -1:
-        cantSolicitada = int(input("Error, ingrese la cantidad solicitada: "))
-        
-if contadorVentas == 0 and acumuladorCantSoli == 0 and acumulador25 == 0 and acumulador10 == 0 and contador10 == 0 and acumuladorSinDesc == 0 and contadorSinDesc == 0:    
+    if cantSoli > 100:
+        precioFinal25= precioBase*12 + (precioBase - (10*precioBase)//100) * 88 + (precioBase - (25*precioBase)//100) * (cantSoli - 100)
+        print("Precio final: ", precioFinal25)
+        promedio = precioFinal25 / cantSoli
+        print("Promedio por unidad: %.2f" %promedio)
+    
+    contadorTotalVentas = contadorTotalVentas + 1
+    cantSoli = int(input("Ingrese la cantidad solicitada: "))
+
+if contadorTotalVentas == 0:
     print("No se ingresaron datos")
 else:
-    valorTotalVenta = acumuladorSinDesc + acumulador10 + acumulador25
-    precioPromedio = valorTotalVenta // acumuladorCantSoli
-    print("Valor total de la venta: ", valorTotalVenta)
-    print("Precio promedio del producto: ", precioPromedio)
-    print("Cantidad de ventas realizadas: ", contadorVentas)
-    print("Cantidad de ventas con 10% de descuento: ", contador10)
-    print("Cantidad de ventas sin descuento aplicado: ", contadorSinDesc)
-        
+    print("Cantidad de ventas realizadas: ", contadorTotalVentas)
+    print("Cantidad de ventas con 10% de descuento", contador10)
+    print("Cantidad de ventas sin descuento: ",contadorSinDes)
